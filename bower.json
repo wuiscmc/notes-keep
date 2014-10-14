@@ -1,0 +1,16 @@
+{
+  "name": "notes-keep",
+  "description": "Notes display app",
+  "version": "0.0.0",
+  "homepage": "https://github.com/wuiscmc/notes-keep",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "jquery": "1.10.2",
+    "bootstrap": "~3.1.1",
+    "angular-route": "~1.2.x",
+    "angular-resource": "~1.2.x"
+  }
+}
