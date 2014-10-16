@@ -37,5 +37,44 @@ text-transform: uppercase;
 
 note-card{
   padding: 10px;
-  margin: 10px;
+  margin: 10px 5px;
 }
+
+.cards note-card{
+  width: 25%;
+  float: left;
+}
+
+
+
+.cards:after{
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+
+ #new-card {
+  width: 50%;
+  margin-top: 10px;
+ }
+
+#new-card input{
+  font-family: 'RobotoDraft', sans-serif;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+#new-card [type="text"],
+#new-card [type="date"]{
+  border: none;
+}
+
+
+#content{
+  margin: 0 auto;
+}
+

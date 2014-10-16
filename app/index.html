@@ -34,33 +34,34 @@
     <!-- main page content will go here -->
     <div id="content" ng-controller="CardListCtrl">
 
-      <note-card>
-        <div id="new-card">
+      <note-card id="new-card">
+        <div>
           <form ng-submit="saveCard()">
-            <textarea ng-model="newCard.content"></textarea>
+            <input type="text" ng-model="newCard.content" placeholder="Add something"></input>
             <input type="date" ng-model="newCard.date"/>
             <input type="submit" value="Submit"/>
           </form>
         </div>
       </note-card>
 
-
-      <note-card ng-repeat="card in cards">
-        <a href="" ng-click="editCard(card)" class="card-edit">edit</a>
-        <a href="" ng-click="removeCard(card.id)" class="card-delete">delete</a>
-
-        <span class="card-date">{{card.date | date}}</span>
-        <p>{{card.content}}</p>
-      </note-card>
-
+      <div class="cards">
+        <note-card ng-repeat="card in cards">
+          <a href="" ng-click="editCard(card)" class="card-edit">edit</a>
+          <a href="" ng-click="removeCard(card.id)" class="card-delete">delete</a>
+          <span class="card-date">{{card.date | date}}</span>
+          <p>{{card.content}}</p>
+        </note-card>
+      </div>
 
       <div id="edit-card" ng-show="editing">
-        <form>
-          <textarea ng-model="lockedCard.content"></textarea>
-          <input type="date" ng-model="lockedCard.date"/>
-          <input ng-click="updateCard()" type="submit" value="Update"/>
-          <button ng-click="cancelEdit()">Cancel</button>
-        </form>
+        <note-card>
+          <form>
+            <textarea ng-model="lockedCard.content"></textarea>
+            <input type="date" ng-model="lockedCard.date"/>
+            <input ng-click="updateCard()" type="submit" value="Update"/>
+            <button ng-click="cancelEdit()">Cancel</button>
+          </form>
+        </note-card>
       </div>
 
 
