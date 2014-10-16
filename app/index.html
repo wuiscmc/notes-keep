@@ -3,46 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Note keep</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
   <link rel="stylesheet" href="css/app.css">
-</head>
-
-<body>
-
-  <div id="content" ng-controller="CardListCtrl">
-
-    <div id="new-card">
-      <form ng-submit="saveCard()">
-        <textarea ng-model="newCard.content"></textarea>
-        <input type="date" ng-model="newCard.date"/>
-        <input type="submit" value="Submit"/>
-      </form>
-    </div>
-
-    <ul>
-      <li ng-repeat="card in cards">
-
-        <a href="" ng-click="removeCard(card.id)">delete</a>
-        <a href="" ng-click="editCard(card)">Edit</a>
-        <span class="card-date">{{card.date | date }}</span>
-        <p class="card-content">{{card.content}}</p>
-      </li>
-    </ul>
-
-    <div id="edit-card" ng-show="editing">
-      <form ng-submit="updateCard()">
-        <textarea ng-model="lockedCard.content"></textarea>
-        <input type="date" ng-model="lockedCard.date"/>
-        <input type="submit" value="Update"/>
-        <button ng-click="cancelEdit()">Cancel</button>
-      </form>
-    </div>
-
-
-  </div>
-
-
-
 
   <script src="bower_components/lodash/dist/lodash.js"></script>
   <script src="bower_components/angular/angular.js"></script>
@@ -51,6 +13,61 @@
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/underscore.js"></script>
+
+  <script src="bower_components/platform/platform.js"></script>
+  <link rel="import" href="bower_components/font-roboto/roboto.html">
+  <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+  <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+  <link rel="import" href="bower_components/paper-input/paper-input.html">
+
+  <link rel="import" href="card.html">
+
+</head>
+
+<body unresolved>
+
+  <core-header-panel>
+
+    <core-toolbar> NOTES KEEP </core-toolbar>
+
+    <!-- main page content will go here -->
+    <div id="content" ng-controller="CardListCtrl">
+
+      <note-card>
+        <div id="new-card">
+          <form ng-submit="saveCard()">
+            <textarea ng-model="newCard.content"></textarea>
+            <input type="date" ng-model="newCard.date"/>
+            <input type="submit" value="Submit"/>
+          </form>
+        </div>
+      </note-card>
+
+
+      <note-card ng-repeat="card in cards">
+        <a href="" ng-click="editCard(card)" class="card-edit">edit</a>
+        <a href="" ng-click="removeCard(card.id)" class="card-delete">delete</a>
+
+        <span class="card-date">{{card.date | date}}</span>
+        <p>{{card.content}}</p>
+      </note-card>
+
+
+      <div id="edit-card" ng-show="editing">
+        <form>
+          <textarea ng-model="lockedCard.content"></textarea>
+          <input type="date" ng-model="lockedCard.date"/>
+          <input ng-click="updateCard()" type="submit" value="Update"/>
+          <button ng-click="cancelEdit()">Cancel</button>
+        </form>
+      </div>
+
+
+    </div>
+  </core-header-panel>
+
+
 </body>
 
 </html>
