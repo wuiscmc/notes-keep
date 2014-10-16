@@ -5,38 +5,52 @@
   <title>Note keep</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
-
-  <script src="bower_components/underscore/underscore.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/underscore.js"></script>
 </head>
 
 <body>
 
-  <div id="content" ng-controller="CardList">
+  <div id="content" ng-controller="CardListCtrl">
+
+    <div id="new-card">
+      <form ng-submit="saveCard()">
+        <textarea ng-model="newCard.content"></textarea>
+        <input type="date" ng-model="newCard.date"/>
+        <input type="submit" value="Submit"/>
+      </form>
+    </div>
+
     <ul>
       <li ng-repeat="card in cards">
+
         <a href="" ng-click="removeCard(card.id)">delete</a>
-        <a href="">edit</a>
+        <a href="" ng-click="editCard(card)">Edit</a>
         <span class="card-date">{{card.date | date }}</span>
         <p class="card-content">{{card.content}}</p>
       </li>
     </ul>
 
-    <form ng-submit="addCard()">
-      <textarea ng-model="newCard.content"></textarea>
-      <input type="date" ng-model="newCard.date"/>
-      <input type="submit" value="Submit"/>
-    </form>
+    <div id="edit-card" ng-show="editing">
+      <form ng-submit="updateCard()">
+        <textarea ng-model="lockedCard.content"></textarea>
+        <input type="date" ng-model="lockedCard.date"/>
+        <input type="submit" value="Update"/>
+        <button ng-click="cancelEdit()">Cancel</button>
+      </form>
+    </div>
+
+
   </div>
 
 
 
 
-
+  <script src="bower_components/lodash/dist/lodash.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/underscore.js"></script>
 </body>
 
 </html>
