@@ -24,6 +24,7 @@ cardControllers.controller('CardListCtrl', ['$scope', '$http', '_', function($sc
   }
 
   $scope.saveCard = function() {
+    $scope.newCard.id = parseInt((Math.random() * 10) + 10);
     $scope.cards.push($scope.newCard);
     finishAdd();
   }
